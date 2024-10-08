@@ -1,14 +1,20 @@
 import { useState } from "react";
 
-export const Card = ({ initialCount }) => {
+export const Card = ({ initialCount, name, price, description }) => {
   const [count, setCount] = useState(initialCount);
   return (
     <div className="card">
-      <h2>Laptop</h2>
-      <p className="price">$1500</p>
-      <p>Una potente laptop para trabajar y jugar.</p>
+      <h2>{name}</h2>
+      <p className="price">{price}</p>
+      <p>{description}</p>
       <p className="stock">
-        En Stock: <span>{count}</span>
+        {count > 0 ? (
+          <>
+            En Stock: <span>{count}</span>
+          </>
+        ) : (
+          <span style={{ color: 'red' }}>Agotado</span>
+        )}
       </p>
       <button onClick={() => setCount(count - 1)}>Comprar </button>
     </div>
